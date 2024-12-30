@@ -1,0 +1,41 @@
+<form #form="ngForm" (ngSubmit)="onSubmit(form)">
+  <!-- Name Field -->
+  <label class="input input-bordered flex items-center gap-2 mb-2">
+    Name
+    <input
+      name="name"
+      [(ngModel)]="user.name"
+      class="grow"
+      placeholder="Daisy"
+      (ngModelChange)="validateForm('name')"
+    />
+  </label>
+  <div *ngIf="errors['name'].length > 0" class="error-list">
+    <div *ngFor="let error of errors['name']" class="alert alert-error mb-2">
+      <span>{{ error }}</span>
+    </div>
+  </div>
+
+  <!-- Email Field -->
+  <label class="input input-bordered flex items-center gap-2 mb-2">
+    Email
+    <input
+      name="email"
+      [(ngModel)]="user.email"
+      class="grow"
+      placeholder="daisy@site.com"
+      required
+      (ngModelChange)="validateForm('email')"
+    />
+  </label>
+  <div *ngIf="errors['email'].length > 0" class="error-list">
+    <div *ngFor="let error of errors['email']" class="alert alert-error mb-2">
+      <span>{{ error }}</span>
+    </div>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="mt-5">
+    <button class="btn btn-outline btn-primary" [disabled]="form.invalid || hasErrors()">Submit</button>
+  </div>
+</form>
