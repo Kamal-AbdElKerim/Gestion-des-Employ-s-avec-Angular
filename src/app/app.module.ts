@@ -7,6 +7,7 @@ import { NotFoundPageComponent } from './not-found-page/not-found-page.component
 import { NavbarComponent } from './navbar/navbar.component';
 import {ErrorComponent} from "./components/error/error.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {HighlightDirective} from "./highlight/highlight.directive";
 
 @NgModule({
   declarations: [
@@ -15,7 +16,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     NavbarComponent,
 
     ErrorComponent,
-
+    HighlightDirective
 
 
   ],
@@ -27,7 +28,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   ],
   providers: [],
   exports: [
-
+    HighlightDirective
   ],
   bootstrap: [AppComponent]
 })

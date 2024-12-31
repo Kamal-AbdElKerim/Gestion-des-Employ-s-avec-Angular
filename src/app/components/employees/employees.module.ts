@@ -8,6 +8,7 @@ import {EmployeeCardComponentComponent} from "../employee-card-component/employe
 import {FormsModule} from "@angular/forms";
 import {EmployeeDetailsComponent} from "../employee-details/employee-details.component";
 import {FormatDatePipe} from "../../Pipe/format-date.pipe";
+import {HighlightDirective} from "../../highlight/highlight.directive";
 
 
 @NgModule({
@@ -16,7 +17,8 @@ import {FormatDatePipe} from "../../Pipe/format-date.pipe";
     EmployeeDetailsComponent,
     FormatDatePipe,
     FormEmployeeComponent ,
-    EmployeeCardComponentComponent
+    EmployeeCardComponentComponent,
+    HighlightDirective
   ],
   imports: [
     CommonModule,
