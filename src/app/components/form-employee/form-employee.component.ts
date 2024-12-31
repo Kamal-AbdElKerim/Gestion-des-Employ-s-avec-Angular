@@ -13,7 +13,7 @@ export class FormEmployeeComponent implements OnInit, OnChanges {
     id: 0,
     name: '',
     email: '',
-    Date: ''
+    Date: new Date()
   };
   errorMessage: any = null;
   errors: { [key: string]: string[] } = {
@@ -56,7 +56,7 @@ export class FormEmployeeComponent implements OnInit, OnChanges {
       id: 0,
       name: '',
       email: '',
-      Date: ''
+      Date: new Date()
     };
   }
 

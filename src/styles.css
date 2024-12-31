@@ -2,3 +2,8 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+/* Create a custom class for wide notifications */
+.notyf-wide .notyf-toast {
+  width: 500px !important;
+  max-width: 90% !important;
+}

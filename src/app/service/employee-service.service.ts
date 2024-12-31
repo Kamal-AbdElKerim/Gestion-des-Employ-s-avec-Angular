@@ -55,6 +55,7 @@ export class EmployeeService {
     return new Observable<Employee[]>(observer => {
       try {
         employee.id = this.generateId();
+        employee.Date = new Date()
         this.employees.unshift(employee);
         this.updateLocalStorage();
         observer.next([...this.employees]);

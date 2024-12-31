@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {Employee} from "../../interface/Employee";
 import {EmployeeService} from "../../service/employee-service.service";
 import {Router} from "@angular/router";
+import {NotyfService} from "../../service/notyf.service";
 
 @Component({
   selector: 'app-employees',
@@ -15,21 +16,22 @@ export class EmployeesComponent {
     id : 0,
     name: '',
     email: '',
-    Date : ''
+    Date : new Date()
   };
   errorMessage: string | null = null;
   newEmployee : Employee = {
     id : 0,
     name: '',
     email: '',
-    Date : ''
+    Date : new Date()
   };
   employeeID : number = 0;
   isUpdate : boolean = false;
 
   constructor(
     private employeeService: EmployeeService,
-    private router: Router
+    private router: Router,
+    private notyfService: NotyfService
 
   ) {
 
@@ -54,8 +56,12 @@ export class EmployeesComponent {
     this.employeeService.addEmployee(this.newEmployee).subscribe({
       next: () => {
         this.loadEmployees(); // Refresh the list
+        this.notyfService.success(`Employee ${this.newEmployee.name} added successfully`);
+
       },
-      error: (err) => (this.errorMessage = 'Failed to add employee'),
+      error: (err) => (
+        this.errorMessage = 'Failed to add employee'),
+
     });
 
   }
@@ -69,7 +75,7 @@ export class EmployeesComponent {
   }
 
   onEmployeeAdded(employee : Employee) {
-    this.newEmployee = { id: 0, name: '', email: '', Date: '' }; // Reset
+    this.newEmployee = { id: 0, name: '', email: '', Date: new Date() }; // Reset
     this.newEmployee = employee ;
     console.log(employee);
     this.addEmployee();
@@ -77,13 +83,15 @@ export class EmployeesComponent {
   }
 
   onEmployeeUpdate(employee : Employee) {
-    this.newEmployee = { id: 0, name: '', email: '', Date: '' }; // Reset
+    this.newEmployee = { id: 0, name: '', email: '', Date: new Date() };
     this.newEmployee = employee ;
     console.log(employee);
     this.employeeService.updateEmployee(employee.id , this.newEmployee).subscribe({
       next: () => {
         this.loadEmployees();
         this.isUpdate = false;
+        this.notyfService.success(`Employee ${this.newEmployee.name} updated successfully`);
+
       },
       error: (err) => (this.errorMessage = 'Failed to add employee'),
     })

@@ -17,6 +17,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     ErrorComponent,
 
 
+
   ],
   imports: [
     BrowserModule,
@@ -26,6 +27,7 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
   ],
   providers: [],
   exports: [
+
   ],
   bootstrap: [AppComponent]
 })
