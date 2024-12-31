@@ -1,14 +1,10 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import {EmployeComponent} from "./employe/employe.component";
 import {NotFoundPageComponent} from "./not-found-page/not-found-page.component";
-import {EmployeeListComponent} from "./components/employee-list/employee-list.component";
 
 const routes: Routes = [
-  {
-    path: "list/employees" ,
-    component : EmployeeListComponent
-  },
+  { path: 'employees', loadChildren: () => import('./components/employees/employees.module').then(m => m.EmployeesModule) }
+,
   {
     path: "**",
     component: NotFoundPageComponent

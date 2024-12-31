@@ -1,26 +1,64 @@
-import {Component, EventEmitter , Output} from '@angular/core';
-import {Employee} from "../../interface/Employee";
+import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
+import { Employee } from "../../interface/Employee";
+import { Router } from "@angular/router";
+import { EmployeeService } from "../../service/employee-service.service";
 
 @Component({
   selector: 'app-form-employee',
   templateUrl: './form-employee.component.html',
   styleUrls: ['./form-employee.component.css']
 })
-export class FormEmployeeComponent {
-  user : Employee = {
-    id : 0,
+export class FormEmployeeComponent implements OnInit, OnChanges {
+  user: Employee = {
+    id: 0,
     name: '',
     email: '',
-    Date : ''
+    Date: ''
   };
-
+  errorMessage: any = null;
   errors: { [key: string]: string[] } = {
     name: [],
     email: []
   };
 
-  @Output() employeeAdded = new EventEmitter<Employee>();
+  @Input() employee!: Employee;
+  @Input() isUpdate: boolean = false;
 
+  @Output() employeeAdded = new EventEmitter<Employee>();
+  @Output() employeeUpdate = new EventEmitter<Employee>();
+
+  constructor(private router: Router, private employeeService: EmployeeService) {}
+
+  ngOnInit(): void {}
+
+  // This method is called whenever the input properties change
+  ngOnChanges(changes: SimpleChanges): void {
+    // Check if the 'isUpdate' flag or 'employee' changes
+    if (changes['isUpdate']) {
+      if (this.isUpdate) {
+        // If isUpdate is true, copy employee data to user
+        this.user = { ...this.employee };
+      } else {
+        // If isUpdate is false, reset the form
+        this.resetUser();
+      }
+    }
+
+    // If 'employee' input changes, update 'user' data accordingly
+    if (changes['employee'] && this.isUpdate) {
+      this.user = { ...this.employee };  // Copy employee data to user
+    }
+  }
+
+  // Reset the user object to initial empty state
+  resetUser() {
+    this.user = {
+      id: 0,
+      name: '',
+      email: '',
+      Date: ''
+    };
+  }
 
   // Validate the form fields
   validateForm(field?: string) {
@@ -66,18 +104,18 @@ export class FormEmployeeComponent {
     this.validateForm();
 
     if (form.valid && !this.hasErrors()) {
-    //  console.log('Form Submitted!', this.user);
-      this.employeeAdded.emit(this.user);
-      this.user  = {
-        id : 0,
-        name: '',
-        email: '',
-        Date : ''
-      };
+      if (this.isUpdate) {
+
+        this.employeeUpdate.emit(this.user);
+      } else {
+        // Add a new employee
+        this.employeeAdded.emit(this.user);
+      }
+
+      // Reset the user object after submission
+      this.resetUser();
     } else {
       console.log('Form has errors', this.errors);
     }
   }
-
-
 }

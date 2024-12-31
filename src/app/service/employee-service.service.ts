@@ -10,6 +10,7 @@ export class EmployeeService {
   private readonly localStorageKey = 'employees';
   private employees: Employee[] = [];
   private employeesSubject: BehaviorSubject<Employee[]>;
+  employee?: Employee;
 
   constructor() {
     const storedEmployees = localStorage.getItem(this.localStorageKey);
@@ -28,6 +29,23 @@ export class EmployeeService {
         return throwError(() => new Error('Erreur lors de la récupération des employés.'));
       })
     );
+  }
+
+  getEmployeeById(id: number): Observable<Employee | undefined> {
+    return new Observable<Employee | undefined>((observer) => {
+      try {
+        const employee = this.employees.find((emp) => emp.id === id);
+        if (employee) {
+          observer.next(employee);
+          observer.complete();
+        } else {
+          observer.error(`Employé avec l'ID ${id} introuvable.`);
+        }
+      } catch (error) {
+        console.error('Erreur lors de la recherche de l\'employé :', error);
+        observer.error('Impossible de rechercher l\'employé.');
+      }
+    });
   }
 
   /**

@@ -1,5 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Employee} from "../../interface/Employee";
+import {EmployeeService} from "../../service/employee-service.service";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-employee-card-component',
@@ -8,4 +10,21 @@ import {Employee} from "../../interface/Employee";
 })
 export class EmployeeCardComponentComponent {
 @Input() employee! : Employee;
+
+  @Output() employeeID = new EventEmitter<number>();
+
+
+constructor( private router: Router) {
+}
+
+
+
+  moreInfo(id : number) : void {
+    this.router.navigate(['/employees', id])
+
+  }
+
+  updateEmployee(id : number) : void {
+    this.employeeID.emit(id);
+}
 }

@@ -36,6 +36,10 @@
 
   <!-- Submit Button -->
   <div class="mt-5">
-    <button class="btn btn-outline btn-primary" [disabled]="form.invalid || hasErrors()">Submit</button>
+    @if (isUpdate ){
+    <button class="btn btn-outline btn-primary" [disabled]="form.invalid || hasErrors()">Update</button>
+    } @else {
+      <button class="btn btn-outline btn-primary" [disabled]="form.invalid || hasErrors()">Submit</button>
+    }
   </div>
 </form>
