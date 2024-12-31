@@ -76,8 +76,6 @@ export class EmployeesComponent {
 
   }
 
-
-
   onEmployeeUpdate(employee : Employee) {
     this.newEmployee = { id: 0, name: '', email: '', Date: '' }; // Reset
     this.newEmployee = employee ;
