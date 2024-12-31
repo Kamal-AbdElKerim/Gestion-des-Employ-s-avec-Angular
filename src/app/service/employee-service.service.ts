@@ -36,10 +36,10 @@ export class EmployeeService {
   addEmployee(employee: Employee): Observable<Employee[]> {
     return new Observable<Employee[]>(observer => {
       try {
-        employee.id = this.generateId(); // Générer un ID unique
-        this.employees.push(employee);
+        employee.id = this.generateId();
+        this.employees.unshift(employee);
         this.updateLocalStorage();
-        observer.next([...this.employees]); // Émettre la nouvelle liste d'employés
+        observer.next([...this.employees]);
         observer.complete();
       } catch (error) {
         console.error('Erreur lors de l\'ajout de l\'employé :', error);

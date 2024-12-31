@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import {Component, Input} from '@angular/core';
+import {Employee} from "../../interface/Employee";
 
 @Component({
   selector: 'app-employee-card-component',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrl: './employee-card-component.component.css'
 })
 export class EmployeeCardComponentComponent {
-
+@Input() employee! : Employee;
 }

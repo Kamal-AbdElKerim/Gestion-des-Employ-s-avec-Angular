@@ -1,4 +1,5 @@
 import {Component, EventEmitter , Output} from '@angular/core';
+import {Employee} from "../../interface/Employee";
 
 @Component({
   selector: 'app-form-employee',
@@ -6,9 +7,11 @@ import {Component, EventEmitter , Output} from '@angular/core';
   styleUrls: ['./form-employee.component.css']
 })
 export class FormEmployeeComponent {
-  user = {
+  user : Employee = {
+    id : 0,
     name: '',
-    email: ''
+    email: '',
+    Date : ''
   };
 
   errors: { [key: string]: string[] } = {
@@ -16,6 +19,7 @@ export class FormEmployeeComponent {
     email: []
   };
 
+  @Output() employeeAdded = new EventEmitter<Employee>();
 
 
   // Validate the form fields
@@ -62,9 +66,18 @@ export class FormEmployeeComponent {
     this.validateForm();
 
     if (form.valid && !this.hasErrors()) {
-      console.log('Form Submitted!', this.user);
+    //  console.log('Form Submitted!', this.user);
+      this.employeeAdded.emit(this.user);
+      this.user  = {
+        id : 0,
+        name: '',
+        email: '',
+        Date : ''
+      };
     } else {
       console.log('Form has errors', this.errors);
     }
   }
+
+
 }

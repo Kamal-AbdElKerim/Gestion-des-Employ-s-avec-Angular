@@ -12,19 +12,19 @@ import {EmployeeService} from "../../service/employee-service.service";
 })
 export class EmployeeListComponent implements OnInit {
   employees: Employee[] = [];
-  employeeForm: FormGroup;
   errorMessage: string | null = null;
+  newEmployee : Employee = {
+    id : 0,
+    name: '',
+    email: '',
+    Date : ''
+  };
 
   constructor(
     private employeeService: EmployeeService,
-    private fb: FormBuilder
+
   ) {
-    // Initialize the reactive form
-    this.employeeForm = this.fb.group({
-      name: ['', Validators.required],
-      email: ['', [Validators.required, Validators.email]],
-      hireDate: ['', Validators.required],
-    });
+
   }
 
   ngOnInit(): void {
@@ -42,18 +42,14 @@ export class EmployeeListComponent implements OnInit {
 
   // Add a new employee
   addEmployee(): void {
-    if (this.employeeForm.valid) {
-      const newEmployee: Employee = this.employeeForm.value;
-      this.employeeService.addEmployee(newEmployee).subscribe({
+
+      this.employeeService.addEmployee(this.newEmployee).subscribe({
         next: () => {
-          this.employeeForm.reset();
           this.loadEmployees(); // Refresh the list
         },
         error: (err) => (this.errorMessage = 'Failed to add employee'),
       });
-    } else {
-      this.errorMessage = 'Please fill out the form correctly.';
-    }
+
   }
 
   // Delete an employee
@@ -64,5 +60,11 @@ export class EmployeeListComponent implements OnInit {
     });
   }
 
+  onEmployeeAdded(employee : Employee) {
+    this.newEmployee = { id: 0, name: '', email: '', Date: '' }; // Reset
+    this.newEmployee = employee ;
+    console.log(employee);
+    this.addEmployee();
 
+  }
 }
