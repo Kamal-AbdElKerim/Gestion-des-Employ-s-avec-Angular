@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import {Employee} from "../../interface/Employee";
 import {EmployeeService} from "../../service/employee-service.service";
 import {Router} from "@angular/router";
-import {NotyfService} from "../../service/notyf.service";
+import {SweetAlertService} from "../../service/sweet-alert.service";
 
 @Component({
   selector: 'app-employees',
@@ -31,7 +31,7 @@ export class EmployeesComponent {
   constructor(
     private employeeService: EmployeeService,
     private router: Router,
-    private notyfService: NotyfService
+    private sweetAlertService: SweetAlertService
 
   ) {
 
@@ -56,7 +56,8 @@ export class EmployeesComponent {
     this.employeeService.addEmployee(this.newEmployee).subscribe({
       next: () => {
         this.loadEmployees(); // Refresh the list
-        this.notyfService.success(`Employee ${this.newEmployee.name} added successfully`);
+        this.sweetAlertService.showSuccess(`Employee ${this.newEmployee.name} added successfully`);
+
 
       },
       error: (err) => (
@@ -90,7 +91,8 @@ export class EmployeesComponent {
       next: () => {
         this.loadEmployees();
         this.isUpdate = false;
-        this.notyfService.success(`Employee ${this.newEmployee.name} updated successfully`);
+
+        this.sweetAlertService.showSuccess(`Employee ${this.newEmployee.name} updated successfully`);
 
       },
       error: (err) => (this.errorMessage = 'Failed to add employee'),

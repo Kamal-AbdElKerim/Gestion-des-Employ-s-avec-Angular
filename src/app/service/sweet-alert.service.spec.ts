@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NotyfService } from './notyf.service';
+import { SweetAlertService } from './sweet-alert.service';
 
-describe('NotyfService', () => {
-  let service: NotyfService;
+describe('SweetAlertService', () => {
+  let service: SweetAlertService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NotyfService);
+    service = TestBed.inject(SweetAlertService);
   });
 
   it('should be created', () => {

@@ -2,8 +2,8 @@
   <!-- Name Field -->
   <label
     [ngClass]="{
-      'error_border': errors['name']?.length > 0,
-      'success_border': errors['name']?.length === 0 && nameField.valid && nameField.dirty
+      'error_border': errors['name'] && errors['name'].length > 0,
+      'success_border': errors['name'] && errors['name'].length === 0 && nameField.valid && nameField.dirty
     }"
     class="input input-bordered flex items-center gap-2 mb-2"
   >
@@ -19,7 +19,7 @@
       (ngModelChange)="validateForm('name')"
     />
   </label>
-  <div *ngIf="errors['name'].length > 0" class="error-list">
+  <div *ngIf="errors['name'] && errors['name'].length > 0" class="error-list">
     <div *ngFor="let error of errors['name']" class="alert alert-error mb-2">
       <span>{{ error }}</span>
     </div>
@@ -28,8 +28,8 @@
   <!-- Email Field -->
   <label
     [ngClass]="{
-      'error_border': errors['email']?.length > 0,
-      'success_border': errors['email']?.length === 0 && emailField.valid && emailField.dirty
+      'error_border': errors['email'] && errors['email'].length > 0,
+      'success_border': errors['email'] && errors['email'].length === 0 && emailField.valid && emailField.dirty
     }"
     class="input input-bordered flex items-center gap-2 mb-2"
   >
@@ -45,7 +45,7 @@
       (ngModelChange)="validateForm('email')"
     />
   </label>
-  <div *ngIf="errors['email'].length > 0" class="error-list">
+  <div *ngIf="errors['email'] && errors['email'].length > 0" class="error-list">
     <div *ngFor="let error of errors['email']" class="alert alert-error mb-2">
       <span>{{ error }}</span>
     </div>

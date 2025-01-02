@@ -2,7 +2,6 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Employee} from "../../interface/Employee";
 import {EmployeeService} from "../../service/employee-service.service";
 import {Router} from "@angular/router";
-import {NotyfService} from "../../service/notyf.service";
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-employee-card-component',
@@ -15,7 +14,7 @@ export class EmployeeCardComponentComponent {
   @Output() employeeID = new EventEmitter<number>();
 
 
-constructor( private router: Router , private employeeService: EmployeeService , private notyf : NotyfService) {
+constructor( private router: Router , private employeeService: EmployeeService ) {
 }
 
 
