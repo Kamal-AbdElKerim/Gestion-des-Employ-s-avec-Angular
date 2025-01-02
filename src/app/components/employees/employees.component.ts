@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Employee} from "../../interface/Employee";
 import {EmployeeService} from "../../service/employee-service.service";
 import {Router} from "@angular/router";
@@ -9,7 +9,7 @@ import {SweetAlertService} from "../../service/sweet-alert.service";
   templateUrl: './employees.component.html',
   styleUrl: './employees.component.css'
 })
-export class EmployeesComponent {
+export class EmployeesComponent implements OnInit {
 
   employees: Employee[] = [];
   employee: Employee  = {
@@ -55,9 +55,8 @@ export class EmployeesComponent {
 
     this.employeeService.addEmployee(this.newEmployee).subscribe({
       next: () => {
-        this.loadEmployees(); // Refresh the list
+        this.loadEmployees();
         this.sweetAlertService.showSuccess(`Employee ${this.newEmployee.name} added successfully`);
-
 
       },
       error: (err) => (
@@ -67,13 +66,6 @@ export class EmployeesComponent {
 
   }
 
-  // Delete an employee
-  deleteEmployee(id: number): void {
-    this.employeeService.deleteEmployee(id).subscribe({
-      next: () => this.loadEmployees(),
-      error: (err) => (this.errorMessage = 'Failed to delete employee'),
-    });
-  }
 
   onEmployeeAdded(employee : Employee) {
     this.newEmployee = { id: 0, name: '', email: '', Date: new Date() }; // Reset
