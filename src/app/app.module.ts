@@ -16,7 +16,7 @@ import {HighlightDirective} from "./highlight/highlight.directive";
     NavbarComponent,
 
     ErrorComponent,
-    HighlightDirective
+
 
 
   ],
@@ -28,7 +28,7 @@ import {HighlightDirective} from "./highlight/highlight.directive";
   ],
   providers: [],
   exports: [
-    HighlightDirective
+
   ],
   bootstrap: [AppComponent]
 })

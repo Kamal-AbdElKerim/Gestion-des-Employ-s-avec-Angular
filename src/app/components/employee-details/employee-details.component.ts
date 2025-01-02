@@ -9,7 +9,7 @@ import {ActivatedRoute} from "@angular/router";
   styleUrl: './employee-details.component.css'
 })
 export class EmployeeDetailsComponent implements OnInit {
-  employee?: Employee;
+  employee?: Employee ;
   errorMessage : any  = null;
   employeeId!: number;
 
