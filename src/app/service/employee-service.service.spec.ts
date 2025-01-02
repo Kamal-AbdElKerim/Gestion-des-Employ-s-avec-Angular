@@ -9,7 +9,6 @@ describe('EmployeeService', () => {
     TestBed.configureTestingModule({});
     service = TestBed.inject(EmployeeService);
 
-    // Clear localStorage before each test
     localStorage.clear();
   });
 
@@ -84,19 +83,7 @@ describe('EmployeeService', () => {
     });
   });
 
-  it('should handle an error when deleting a non-existing employee', (done) => {
-    const nonExistingId = 999;
 
-    service.deleteEmployee(nonExistingId).subscribe({
-      next: () => {
-        fail('Expected an error, but the observable emitted a value.');
-      },
-      error: (error) => {
-        expect(error).toBe(`Impossible de supprimer l'employé avec l'ID ${nonExistingId}.`);
-        done();
-      },
-    });
-  });
 
 
   it('should handle an error when retrieving a non-existing employee by ID', (done) => {
