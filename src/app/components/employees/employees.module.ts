@@ -18,7 +18,7 @@ import {HighlightDirective} from "../../highlight/highlight.directive";
     FormatDatePipe,
     FormEmployeeComponent ,
     EmployeeCardComponentComponent,
-
+    HighlightDirective
   ],
   imports: [
     CommonModule,
