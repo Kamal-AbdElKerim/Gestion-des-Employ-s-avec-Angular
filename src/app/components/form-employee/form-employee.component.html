@@ -1,12 +1,21 @@
 <form #form="ngForm" (ngSubmit)="onSubmit(form)">
   <!-- Name Field -->
-  <label class="input input-bordered flex items-center gap-2 mb-2">
+  <label
+    [ngClass]="{
+      'error_border': errors['name']?.length > 0,
+      'success_border': errors['name']?.length === 0 && nameField.valid && nameField.dirty
+    }"
+    class="input input-bordered flex items-center gap-2 mb-2"
+  >
     Name
     <input
       name="name"
       [(ngModel)]="user.name"
       class="grow"
       placeholder="name..."
+      required
+      minlength="3"
+      #nameField="ngModel"
       (ngModelChange)="validateForm('name')"
     />
   </label>
@@ -17,7 +26,13 @@
   </div>
 
   <!-- Email Field -->
-  <label class="input input-bordered flex items-center gap-2 mb-2">
+  <label
+    [ngClass]="{
+      'error_border': errors['email']?.length > 0,
+      'success_border': errors['email']?.length === 0 && emailField.valid && emailField.dirty
+    }"
+    class="input input-bordered flex items-center gap-2 mb-2"
+  >
     Email
     <input
       name="email"
@@ -25,6 +40,8 @@
       class="grow"
       placeholder="gmail@site.com"
       required
+      email
+      #emailField="ngModel"
       (ngModelChange)="validateForm('email')"
     />
   </label>
@@ -36,10 +53,19 @@
 
   <!-- Submit Button -->
   <div class="mt-5">
-    @if (isUpdate ){
-    <button class="btn btn-outline btn-primary" [disabled]="form.invalid || hasErrors()">Update</button>
-    } @else {
-      <button class="btn btn-outline btn-primary" [disabled]="form.invalid || hasErrors()">Submit</button>
-    }
+    <button
+      *ngIf="isUpdate"
+      class="btn btn-outline btn-primary"
+      [disabled]="form.invalid || hasErrors()"
+    >
+      Update
+    </button>
+    <button
+      *ngIf="!isUpdate"
+      class="btn btn-outline btn-primary"
+      [disabled]="form.invalid || hasErrors()"
+    >
+      Submit
+    </button>
   </div>
 </form>
