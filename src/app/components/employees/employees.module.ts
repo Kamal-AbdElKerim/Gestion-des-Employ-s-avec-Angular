@@ -25,5 +25,6 @@ import {HighlightDirective} from "../../highlight/highlight.directive";
     EmployeesRoutingModule,
     FormsModule
   ]
+
 })
 export class EmployeesModule { }

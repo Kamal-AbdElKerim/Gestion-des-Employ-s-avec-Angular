@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Employee } from '../interface/Employee';
+import { Employee } from '../../interface/Employee';
 import { BehaviorSubject, Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 
@@ -42,8 +42,8 @@ export class EmployeeService {
           observer.error(`Employé avec l'ID ${id} introuvable.`);
         }
       } catch (error) {
-        console.error('Erreur lors de la recherche de l\'employé :', error);
-        observer.error('Impossible de rechercher l\'employé.');
+        console.error('Erreur lors de la recherche de lemployé :', error);
+        observer.error('Impossible de rechercher lemployé.');
       }
     });
   }
@@ -61,8 +61,8 @@ export class EmployeeService {
         observer.next([...this.employees]);
         observer.complete();
       } catch (error) {
-        console.error('Erreur lors de l\'ajout de l\'employé :', error);
-        observer.error('Impossible d\'ajouter l\'employé.');
+        console.error('Erreur lors de lajout de lemployé :', error);
+        observer.error('Impossible dajouter lemployé.');
       }
     });
   }
@@ -83,8 +83,8 @@ export class EmployeeService {
           observer.error('Employé introuvable.');
         }
       } catch (error) {
-        console.error('Erreur lors de la mise à jour de l\'employé :', error);
-        observer.error('Impossible de modifier l\'employé.');
+        console.error('Erreur lors de la mise à jour de lemployé :', error);
+        observer.error('Impossible de modifier lemployé.');
       }
     });
   }
@@ -100,8 +100,8 @@ export class EmployeeService {
         observer.next([...this.employees]); // Émettre la liste après suppression
         observer.complete();
       } catch (error) {
-        console.error('Erreur lors de la suppression de l\'employé :', error);
-        observer.error('Impossible de supprimer l\'employé.');
+        console.error('Erreur lors de la suppression de lemployé :', error);
+        observer.error('Impossible de supprimer lemployé.');
       }
     });
   }
@@ -110,9 +110,7 @@ export class EmployeeService {
    * Générer un nouvel ID unique pour un employé.
    */
   private generateId(): number {
-    return this.employees.length > 0
-      ? Math.max(...this.employees.map(emp => emp.id)) + 1
-      : 1;
+    return this.employees.length > 0 ? Math.max(...this.employees.map(emp => emp.id)) + 1 : 1;
   }
 
   /**

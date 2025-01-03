@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {Employee} from "../../interface/Employee";
-import {EmployeeService} from "../../service/employee-service.service";
+import {EmployeeService} from "../../service/employee/employee-service.service";
 import {Router} from "@angular/router";
-import {SweetAlertService} from "../../service/sweet-alert.service";
+import {SweetAlertService} from "../../service/sweet/sweet-alert.service";
 
 @Component({
   selector: 'app-employees',
@@ -45,7 +45,7 @@ export class EmployeesComponent implements OnInit {
   loadEmployees(): void {
     this.employeeService.getEmployees().subscribe({
       next: (data) => (this.employees = data),
-      error: (err) => (this.errorMessage = 'Failed to load employees'),
+      error: (err) => (this.errorMessage = `Failed to load employees ${err}`),
     });
     console.log(this.employees);
   }
@@ -60,7 +60,7 @@ export class EmployeesComponent implements OnInit {
 
       },
       error: (err) => (
-        this.errorMessage = 'Failed to add employee'),
+        this.errorMessage = `Failed to load employees ${err}`),
 
     });
 
@@ -87,7 +87,7 @@ export class EmployeesComponent implements OnInit {
         this.sweetAlertService.showSuccess(`Employee ${this.newEmployee.name} updated successfully`);
 
       },
-      error: (err) => (this.errorMessage = 'Failed to add employee'),
+      error: (err) => (this.errorMessage = `Failed to load employees ${err}`),
     })
 
   }

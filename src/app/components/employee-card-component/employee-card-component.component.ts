@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Employee} from "../../interface/Employee";
-import {EmployeeService} from "../../service/employee-service.service";
+import {EmployeeService} from "../../service/employee/employee-service.service";
 import {Router} from "@angular/router";
 import Swal from 'sweetalert2';
 @Component({

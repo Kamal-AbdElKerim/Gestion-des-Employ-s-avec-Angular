@@ -2,7 +2,7 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 import { FormEmployeeComponent } from './form-employee.component';
 import { Router } from '@angular/router';
-import { EmployeeService } from '../../service/employee-service.service';
+import { EmployeeService } from '../../service/employee/employee-service.service';
 import { Employee } from '../../interface/Employee';
 import { By } from '@angular/platform-browser';
 import { NO_ERRORS_SCHEMA } from '@angular/core';

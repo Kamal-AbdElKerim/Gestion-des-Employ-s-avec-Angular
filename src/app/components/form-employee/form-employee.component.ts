@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output, OnChanges, SimpleChanges } from '@angular/core';
 import { Employee } from "../../interface/Employee";
 import { Router } from "@angular/router";
-import { EmployeeService } from "../../service/employee-service.service";
+import { EmployeeService } from "../../service/employee/employee-service.service";
 
 @Component({
   selector: 'app-form-employee',
